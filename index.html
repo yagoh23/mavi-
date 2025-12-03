@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nome da Fotógrafa — Portfólio Editorial (Dark)</title>
+  <meta name="description" content="Portfólio editorial dark minimalista para fotógrafa — grid de projetos, sobre, depoimentos e contato com WhatsApp." />
+  <style>
+    :root{
+      --bg:#070708; --card:#0d0d0f; --muted:#9b9b9f; --text:#f6f6f7;
+      --accent:#ffffff; --glass: rgba(255,255,255,0.03);
+      --radius:14px; --gap:28px; --max-width:1180px; --container-pad:28px;
+      --transition:260ms cubic-bezier(.2,.9,.3,1);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:linear-gradient(180deg,#060607 0%, #080809 100%); color:var(--text);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* header fixo */
+    header{
+      position:fixed; inset:0 0 auto 0; height:74px; z-index:999;
+      display:flex; align-items:center; justify-content:center; backdrop-filter: blur(8px);
+      background:linear-gradient(180deg, rgba(6,6,6,0.5), rgba(6,6,6,0.25)); border-bottom:1px solid rgba(255,255,255,0.03);
+    }
+    .nav-wrap{width:100%;max-width:var(--max-width);padding:0 20px;display:flex;align-items:center;justify-content:space-between}
+    .brand{font-weight:600;letter-spacing:0.6px}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:10px;font-size:15px}
+    nav a:hover{color:var(--accent);background:var(--glass);transition:var(--transition)}
+
+    .cta{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:10px;color:var(--muted);text-decoration:none}
+    .cta:hover{color:var(--accent);border-color:rgba(255,255,255,0.12)}
+
+    /* hero */
+    .hero{max-width:var(--max-width);margin:120px auto 40px;padding:0 var(--container-pad);display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:center}
+    .hero-left h1{font-size:46px;line-height:1.02;margin:0 0 14px;font-weight:600}
+    .hero-left p{color:var(--muted);font-size:18px;margin:0 0 18px}
+    .hero-actions{display:flex;gap:12px}
+
+    .hero-right{border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+    .hero-right img{display:block;width:100%;height:100%;object-fit:cover}
+
+    /* grid de projetos */
+    .section{max-width:var(--max-width);margin:60px auto;padding:0 var(--container-pad)}
+    .section h2{font-size:26px;margin:0 0 18px}
+
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform var(--transition), box-shadow var(--transition)}
+    .card img{width:100%;height:320px;object-fit:cover;display:block}
+    .card .meta{padding:14px;color:var(--muted);font-size:14px}
+    .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(2,6,23,0.6)}
+
+    /* sobre + depoimentos */
+    .two-col{display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:start}
+    .about p{color:var(--muted);line-height:1.7}
+
+    .testimonials{background:rgba(255,255,255,0.02);padding:18px;border-radius:12px}
+    .testimonial{margin-bottom:12px}
+    .testimonial p{color:var(--muted);font-size:15px;margin:0}
+    .testimonial strong{display:block;color:var(--accent);margin-bottom:6px}
+
+    /* contato */
+    .contact{display:flex;gap:16px;align-items:center}
+    .contact .btn-whatsapp{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;border-radius:10px;padding:12px 16px;text-decoration:none;font-weight:600}
+
+    /* blog teasers */
+    .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+    .post{background:rgba(255,255,255,0.02);border-radius:12px;overflow:hidden}
+    .post img{width:100%;height:160px;object-fit:cover}
+    .post .pmeta{padding:12px;color:var(--muted);font-size:14px}
+
+    footer{max-width:var(--max-width);margin:80px auto;padding:24px var(--container-pad);color:var(--muted);font-size:14px;text-align:center;border-top:1px solid rgba(255,255,255,0.03)}
+
+    /* mobile */
+    @media (max-width:980px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .posts{grid-template-columns:repeat(2,1fr)}
+      .hero{grid-template-columns:1fr 320px}
+      .two-col{grid-template-columns:1fr}
+    }
+    @media (max-width:640px){
+      header{height:64px}
+      .nav-wrap{padding:0 14px}
+      nav{display:none}
+      .hero{margin:92px auto 24px;grid-template-columns:1fr}
+      .hero-right{order:-1;height:260px}
+      .grid{grid-template-columns:1fr}
+      .posts{grid-template-columns:1fr}
+      .card img{height:260px}
+    }
+
+    /* lightbox modal */
+    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,2,2,0.85);visibility:hidden;opacity:0;transition:opacity 220ms}
+    .modal.open{visibility:visible;opacity:1}
+    .modal-content{max-width:1100px;width:92%;background:transparent;border-radius:12px}
+    .modal-content img{width:100%;height:auto;display:block;border-radius:8px}
+    .modal-close{position:fixed;top:20px;right:20px;background:rgba(255,255,255,0.06);border-radius:10px;padding:8px 10px;color:var(--text);border:none;cursor:pointer}
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-wrap">
+      <div class="brand">Nome da Fotógrafa</div>
+      <nav aria-label="Menu principal">
+        <a href="#portfolio">Portfólio</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#blog">Blog</a>
+        <a class="cta" href="#contato">Contato</a>
+      </nav>
+      <div class="mobile-actions">
+        <a class="cta" href="#contato">Orçamento</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-left">
+        <h1>Fotografia Editorial & Retratos</h1>
+        <p>Direção, luz e narrativa visual para projetos autorais, campanhas e retratos com atmosfera cinematográfica.</p>
+        <div class="hero-actions">
+          <a class="cta" href="#portfolio">Ver Portfólio</a>
+          <a class="cta" href="#contato">Agendar</a>
+        </div>
+      </div>
+      <div class="hero-right" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=1600&auto=format&fit=crop" alt="Imagem destacada" loading="lazy">
+      </div>
+    </section>
+
+    <section class="section" id="portfolio">
+      <h2>Projetos</h2>
+      <div class="grid" id="grid">
+        <!-- substitua src por suas imagens otimizadas (webp/jpg) -->
+        <article class="card" data-full="https://images.unsplash.com/photo-1487412720507-3bc06e23ec52?q=80&w=2000&auto=format&fit=crop" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1487412720507-3bc06e23ec52?q=80&w=800&auto=format&fit=crop" alt="Projeto 1" loading="lazy">
+          <div class="meta">Séries Conceitual — 2024</div>
+        </article>
+
+        <article class="card" data-full="https://images.unsplash.com/photo-1504198453319-5ce911bafcde?q=80&w=2000&auto=format&fit=crop" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1504198453319-5ce911bafcde?q=80&w=800&auto=format&fit=crop" alt="Projeto 2" loading="lazy">
+          <div class="meta">Retratos Dirigidos — 2023</div>
+        </article>
+
+        <article class="card" data-full="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=2000&auto=format&fit=crop" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=800&auto=format&fit=crop" alt="Projeto 3" loading="lazy">
+          <div class="meta">Moda & Estilo — 2024</div>
+        </article>
+
+        <!-- duplicar cards conforme necessário -->
+        <article class="card" data-full="https://images.unsplash.com/photo-1519682337058-a94d519337bc?q=80&w=2000&auto=format&fit=crop" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?q=80&w=800&auto=format&fit=crop" alt="Projeto 4" loading="lazy">
+          <div class="meta">Ensaio — Pôr do Sol</div>
+        </article>
+
+        <article class="card" data-full="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=2000&auto=format&fit=crop" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop" alt="Projeto 5" loading="lazy">
+          <div class="meta">Editorial Urbano</div>
+        </article>
+
+        <article class="card" data-full="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=2000&auto=format&fit=crop" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=800&auto=format&fit=crop" alt="Projeto 6" loading="lazy">
+          <div class="meta">Retrato Comercial</div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section" id="sobre">
+      <div class="two-col">
+        <div class="about">
+          <h2>Sobre</h2>
+          <p>Sou fotógrafa com foco em projetos editoriais e retratos autorais. Trabalho com direção de arte, iluminação e produção, buscando traduzir identidade e atmosfera em cada imagem. Atendo marcas, artistas e projetos autorais com abordagem personalizada.</p>
+          <p style="margin-top:12px;color:var(--muted)">Disponibilidade para ensaios locais e projetos por demanda. Entre em contato para orçamento e propostas.</p>
+        </div>
+
+        <aside class="testimonials" id="depoimentos">
+          <h3 style="color:var(--accent);margin:0 0 12px">Depoimentos</h3>
+          <div class="testimonial"><strong>Mariana L.</strong><p>"Profissional impecável — resultado muito acima do esperado. Recomendo para portfólios e campanhas."</p></div>
+          <div class="testimonial"><strong>Agência X</strong><p>"Direção e entrega dentro do prazo. Imagens com linguagem forte e consistente."</p></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="blog">
+      <h2>Últimos artigos</h2>
+      <div class="posts">
+        <article class="post"><img src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?q=80&w=1200&auto=format&fit=crop" alt="Post 1" loading="lazy"><div class="pmeta">Como preparar um ensaio editorial — 6 dicas</div></article>
+        <article class="post"><img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1200&auto=format&fit=crop" alt="Post 2" loading="lazy"><div class="pmeta">Luz e sombra: narrativa em retratos</div></article>
+        <article class="post"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="Post 3" loading="lazy"><div class="pmeta">Escolhendo locações para editoriais</div></article>
+      </div>
+    </section>
+
+    <section class="section" id="contato">
+      <h2>Contato</h2>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center">
+        <a class="btn-whatsapp" href="https://wa.me/5591987654321?text=Ol%C3%A1%2C%20gostaria%20de%20informações%20sobre%20um%20ensaio" target="_blank" rel="noopener noreferrer">📩 WhatsApp</a>
+        <a class="cta" href="mailto:email@exemplo.com">✉️ email@exemplo.com</a>
+        <div style="color:var(--muted);font-size:14px">Atendimento por agendamento · Entrega digital em alta resolução</div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2025 — Nome da Fotógrafa · Todos os direitos reservados · <a href="#" style="color:var(--muted);text-decoration:none">Política de Privacidade</a>
+  </footer>
+
+  <!-- lightbox modal -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Visualização da imagem">
+    <button class="modal-close" id="modalClose" aria-label="Fechar">✕</button>
+    <div class="modal-content" id="modalContent"></div>
+  </div>
+
+  <script>
+    // Lightbox simples: abre versão full quando card clicado
+    (function(){
+      const grid = document.getElementById('grid');
+      const modal = document.getElementById('modal');
+      const modalContent = document.getElementById('modalContent');
+      const modalClose = document.getElementById('modalClose');
+
+      grid.addEventListener('click', (e)=>{
+        const card = e.target.closest('.card');
+        if(!card) return;
+        const full = card.dataset.full || card.querySelector('img').src;
+        openModal(full, card.querySelector('.meta')?.textContent || '');
+      });
+
+      grid.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter'){ const card = e.target.closest('.card'); if(card){ const full = card.dataset.full || card.querySelector('img').src; openModal(full, card.querySelector('.meta')?.textContent || ''); }}
+      });
+
+      function openModal(src, caption){
+        modalContent.innerHTML = `<img src="${src}" alt="${caption}" loading="lazy">`;
+        modal.classList.add('open');
+        document.body.style.overflow='hidden';
+        modalClose.focus();
+      }
+      function closeModal(){ modal.classList.remove('open'); modalContent.innerHTML=''; document.body.style.overflow=''; }
+      modalClose.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+
+      // Smooth scroll for internal links
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', function(e){
+          const href = this.getAttribute('href');
+          if(href === '#') return;
+          const el = document.querySelector(href);
+          if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth',block:'start'}); }
+        });
+      });
+
+      // Accessibility: focus trap minimal (return focus to last focused element)
+      let lastFocus;
+      document.querySelectorAll('.card').forEach(c=> c.addEventListener('focus', ()=> lastFocus = c));
+      modal.addEventListener('transitionend', ()=>{ if(modal.classList.contains('open')){ /* nothing */ } else if(lastFocus) lastFocus.focus(); });
+    })();
+  </script>
+</body>
+</html>
